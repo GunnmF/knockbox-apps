@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>截图</title>
+    <style>
+      /* direct 型轻应用：正常使用时这个页面永远不显示（面板高度为 0）。
+         真出错时宿主会弹原生提示，这里只留一行兜底说明。 */
+      :root { color-scheme: dark; }
+      body {
+        font: 12px/1.6 -apple-system, "PingFang SC", system-ui, sans-serif;
+        color: rgba(255, 255, 255, .7);
+        background: transparent;
+        padding: 10px 12px;
+      }
+    </style>
+  </head>
+  <body>
+    正在启动截图…（选区、标记、取色都在全屏覆盖层里进行）
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

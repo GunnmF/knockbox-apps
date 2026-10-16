@@ -1,0 +1,62 @@
+name: publish
+
+# 这个仓库就是 Knockbox 的官方轻应用商店。「打 tag」=「商店发版」。
+#
+# 流程：打包 apps/ 下的轻应用 → 生成带真实 sha256 的 index.json →
+# 上传 .kbplugin 到 Release → 把 index.json 提交回 main（raw.githubusercontent
+# 就能拉到最新索引，宿主按这个地址取列表）。
+#
+# 和主仓库的 release.yml 一样，第三方 action 全部锁到 commit SHA，
+# 权限压到最小（只给 contents:write）。
+on:
+  push:
+    tags: ['store-v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  store:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          # 要把 index.json 提交回 main，checkout 需要能推代码
+          fetch-depth: 0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 22
+
+      - id: build
+        name: 打包并生成索引
+        run: |
+          set -euo pipefail
+          TAG=${GITHUB_REF_NAME#store-}   # store-v1.2.3 → v1.2.3
+          BASE="https://github.com/GunnmF/knockbox-apps/releases/download/$TAG"
+          node scripts/build-index.mjs --base "$BASE" --write
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+      - name: 上传产物与索引到 Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          TAG="${{ steps.build.outputs.tag }}"
+          gh release view "$TAG" >/dev/null 2>&1 \
+            || gh release create "$TAG" --title "商店 $TAG" --generate-notes --target "$GITHUB_SHA"
+          gh release upload "$TAG" dist/*.kbplugin index.json --clobber
+
+      - name: 把索引提交回 main
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.json
+          # 索引没变就不提交，免得每次都多一个无意义提交
+          if git diff --cached --quiet; then
+            echo "索引没有变化，跳过提交"
+          else
+            git commit -m "chore(store): 更新索引（${{ steps.build.outputs.tag }}）"
+            git push origin main
+          fi
