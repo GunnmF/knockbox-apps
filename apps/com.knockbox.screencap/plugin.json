@@ -1,7 +1,7 @@
 {
   "id": "com.knockbox.screencap",
   "name": "截图",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "Snipaste 式区域截图：拖框选区、标记、放大镜取色、快捷键复制颜色",
   "entry": "index.html",
   "icon": "icon.svg",
@@ -18,7 +18,8 @@
   ],
   "permissions": [
     "screen:capture",
-    "shell:open-path"
+    "shell:open-path",
+    "system:hotkey"
   ],
   "settings": [
     {

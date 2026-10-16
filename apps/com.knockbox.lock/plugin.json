@@ -1,7 +1,7 @@
 {
   "id": "com.knockbox.lock",
   "name": "锁屏",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "立即锁定屏幕",
   "entry": "index.html",
   "icon": "icon.svg",
@@ -12,7 +12,8 @@
     "锁"
   ],
   "permissions": [
-    "system:lock-screen"
+    "system:lock-screen",
+    "system:hotkey"
   ],
   "invocation": "direct",
   "shortcuts": [
