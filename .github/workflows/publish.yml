@@ -50,6 +50,13 @@ jobs:
       - name: 把索引提交回 main
         run: |
           set -euo pipefail
+          # tag 触发的 checkout 是 detached HEAD（检出的是 tag 本身），本地没有
+          # main 分支，直接 push origin main 会报 "src refspec main does not match any"。
+          # 注意顺序：先把生成的索引拷到一边再切分支 —— git switch main 会把
+          # 工作区的 index.json 冲回 main 的旧版本
+          cp index.json /tmp/index.json
+          git switch main
+          cp /tmp/index.json index.json
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add index.json
