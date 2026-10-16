@@ -1,0 +1,33 @@
+{
+  "name": "Knockbox 官方轻应用商店",
+  "updatedAt": "2026-10-16T04:33:13.050Z",
+  "plugins": [
+    {
+      "id": "com.knockbox.lock",
+      "name": "锁屏",
+      "version": "1.1.0",
+      "description": "立即锁定屏幕",
+      "permissions": [
+        "system:lock-screen"
+      ],
+      "icon": "https://raw.githubusercontent.com/GunnmF/knockbox-apps/main/apps/com.knockbox.lock/icon.svg",
+      "download": "https://github.com/GunnmF/knockbox-apps/releases/download/store-v0.1.0/com.knockbox.lock-1.1.0.kbplugin",
+      "sha256": "b5578d680e297b659f9a047f37a6822a3f856e25eae7156df8775154063f8208",
+      "bytes": 5505
+    },
+    {
+      "id": "com.knockbox.screencap",
+      "name": "截图",
+      "version": "3.1.0",
+      "description": "Snipaste 式区域截图：拖框选区、标记、放大镜取色、快捷键复制颜色",
+      "permissions": [
+        "screen:capture",
+        "shell:open-path"
+      ],
+      "icon": "https://raw.githubusercontent.com/GunnmF/knockbox-apps/main/apps/com.knockbox.screencap/icon.svg",
+      "download": "https://github.com/GunnmF/knockbox-apps/releases/download/store-v0.1.0/com.knockbox.screencap-3.1.0.kbplugin",
+      "sha256": "455a7b2c54b4742393c5476389273919502d0a08b51844f4a94519a763d26ab8",
+      "bytes": 6274
+    }
+  ]
+}
