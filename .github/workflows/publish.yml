@@ -32,7 +32,10 @@ jobs:
         name: 打包并生成索引
         run: |
           set -euo pipefail
-          TAG=${GITHUB_REF_NAME#store-}   # store-v1.2.3 → v1.2.3
+          # Release 的 tag 就是 store-v* 本身，**不要**剥掉 store- 前缀：
+          # 剥掉的话 gh release create 会在仓库里再建一个 v1.2.3 的 tag，
+          # 同一个 release 出现两个 tag，后面的人看不懂哪个是真的
+          TAG="$GITHUB_REF_NAME"
           BASE="https://github.com/GunnmF/knockbox-apps/releases/download/$TAG"
           node scripts/build-index.mjs --base "$BASE" --write
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
