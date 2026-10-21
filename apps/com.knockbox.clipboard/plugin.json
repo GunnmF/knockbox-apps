@@ -1,0 +1,52 @@
+{
+  "id": "com.knockbox.clipboard",
+  "name": "剪贴板",
+  "version": "1.0.0",
+  "description": "剪贴板历史：自动记录复制过的文本，搜索、钉住、一键重新复制",
+  "entry": "index.html",
+  "icon": "icon.svg",
+  "author": "knockbox",
+  "invocation": "panel",
+  "keywords": [
+    "剪贴板",
+    "剪切板",
+    "clipboard",
+    "粘贴",
+    "paste",
+    "copy",
+    "复制",
+    "cb"
+  ],
+  "permissions": [
+    "clipboard:read",
+    "clipboard:write",
+    "storage:local",
+    "system:hotkey"
+  ],
+  "settings": [
+    {
+      "key": "maxItems",
+      "label": "最多保留条数（钉住的不计入）",
+      "type": "select",
+      "options": [
+        "50",
+        "100",
+        "200"
+      ],
+      "default": "100"
+    },
+    {
+      "key": "clearKeepPinned",
+      "label": "清空历史时保留钉住的条目",
+      "type": "boolean",
+      "default": true
+    }
+  ],
+  "shortcuts": [
+    {
+      "key": "CmdOrCtrl+Shift+V",
+      "description": "打开剪贴板历史",
+      "mode": "panel"
+    }
+  ]
+}

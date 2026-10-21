@@ -15,6 +15,7 @@
 apps/
   com.knockbox.screencap/   截图（Snipaste 式选区、标记、取色）
   com.knockbox.lock/        锁屏
+  com.knockbox.clipboard/   剪贴板历史（搜索、钉住、一键重新复制）
 index.json                  商店索引（由 CI 生成，别手改）
 scripts/build-index.mjs     打包 + 生成索引的脚本
 ```
