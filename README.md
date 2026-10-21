@@ -43,7 +43,7 @@ npm run pack                # 自动算出下一个 store-v* 版本，打好本�
 git push origin store-v0.2.0  # 脚本会输出这条命令，确认后自己推
 ```
 
-`npm run pack -- patch|minor|major|x.y.z` 可以指定 bump 粒度（默认 minor）。
+`npm run pack -- patch|minor|major|x.y.z` 可以指定 bump 粒度（默认 patch）。
 推送前脚本会检查：工作区干净、HEAD 与 origin/main 一致。
 
 CI 会自动：打包 → 算 sha256 → 生成 index.json → 上传到 Release →

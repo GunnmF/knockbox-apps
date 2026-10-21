@@ -4,14 +4,11 @@
  * （脚本最后会给出命令），推上去之后剩下的交给 CI（publish.yml）。
  *
  * 用法：
- *   npm run pack              # 默认 minor：0.1.0 → 0.2.0
- *   npm run pack -- patch     # 0.1.0 → 0.1.1
- *   npm run pack -- minor     # 0.1.0 → 0.2.0（默认）
+ *   npm run pack              # 默认 patch：0.1.0 → 0.1.1
+ *   npm run pack -- patch     # 0.1.0 → 0.1.1（默认）
+ *   npm run pack -- minor     # 0.1.0 → 0.2.0
  *   npm run pack -- major     # 0.1.0 → 1.0.0
  *   npm run pack -- 0.3.0     # 指定版本
- *
- * 默认 bump minor 而不是 patch：商店索引进化的粒度通常是"加了一个应用 /
- * 一个应用升了版本"，语义上更接近 minor；要修小错就显式传 patch。
  *
  * 前置检查（不满足就中止，不打半截 tag）：
  *   1. 工作区必须干净 —— tag 指向的提交得包含你要发的全部改动；
@@ -29,7 +26,7 @@ const fail = (msg) => {
 }
 
 // —— 解析参数 ——
-const arg = process.argv[2] ?? 'minor'
+const arg = process.argv[2] ?? 'patch'
 const bumps = ['patch', 'minor', 'major']
 const explicit = /^\d+\.\d+\.\d+$/.test(arg) ? arg : null
 if (!explicit && !bumps.includes(arg)) {
