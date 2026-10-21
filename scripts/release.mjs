@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 /**
- * 商店发版第一步：在本地打好 store-v* tag。推送由你自己执行
- * （脚本最后会给出命令），推上去之后剩下的交给 CI（publish.yml）。
+ * 商店发版：打好 store-v* tag 并推送到 GitHub，剩下的交给 CI（publish.yml）。
  *
  * 用法：
  *   npm run pack              # 默认 patch：0.1.0 → 0.1.1
@@ -74,16 +73,11 @@ if (cmp(next, [major, minor, patch]) <= 0) {
 }
 if (run(['tag', '-l', tag])) fail(`${tag} 已存在`)
 
-// —— 打 tag（只到本地，推送留给用户） ——
+// —— 打 tag 并推送（推上去 CI 就自动发版） ——
 run(['tag', tag])
-console.log(`✓ 已打好本地 tag：${tag}（上一个：store-v${[major, minor, patch].join('.')}）`)
-console.log('')
-console.log('  确认无误后推送，GitHub Actions 会自动打包发版：')
-console.log('')
-console.log(`    git push origin ${tag}`)
-console.log('')
+run(['push', 'origin', tag])
+console.log(`✓ 已推送 ${tag}（上一个：store-v${[major, minor, patch].join('.')}）`)
+console.log('  CI 会自动：打包 → 生成 index.json → 上传 Release → 把索引提交回 main')
 console.log('  打错了想撤回：')
-console.log('')
-console.log(`    git tag -d ${tag}`)
-console.log('')
+console.log(`    git push origin :refs/tags/${tag} && git tag -d ${tag}`)
 console.log('  CI 进度：https://github.com/GunnmF/knockbox-apps/actions/workflows/publish.yml')

@@ -39,12 +39,11 @@ scripts/build-index.mjs     打包 + 生成索引的脚本
 改完 `apps/<id>/` 下的东西，打 tag 就完成「商店发版」：
 
 ```bash
-npm run pack                # 自动算出下一个 store-v* 版本，打好本地 tag
-git push origin store-v0.2.0  # 脚本会输出这条命令，确认后自己推
+npm run pack   # 算出下一个 store-v* 版本，打 tag 并推送，一条命令发版
 ```
 
 `npm run pack -- patch|minor|major|x.y.z` 可以指定 bump 粒度（默认 patch）。
-推送前脚本会检查：工作区干净、HEAD 与 origin/main 一致。
+发版前脚本会检查：工作区干净、HEAD 与 origin/main 一致。
 
 CI 会自动：打包 → 算 sha256 → 生成 index.json → 上传到 Release →
 把 index.json 提交回 main。宿主下次打开商店页就能看到。
