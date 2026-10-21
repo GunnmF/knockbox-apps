@@ -1,0 +1,11 @@
+{
+  "name": "knockbox-apps",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Knockbox 官方轻应用商店：打 tag 即发版（见 scripts/release.mjs）",
+  "scripts": {
+    "pack": "node scripts/release.mjs",
+    "build:index": "node scripts/build-index.mjs"
+  }
+}
