@@ -1,7 +1,23 @@
 {
   "name": "Knockbox 官方轻应用商店",
-  "updatedAt": "2026-10-16T07:18:03.708Z",
+  "updatedAt": "2026-10-21T15:52:07.030Z",
   "plugins": [
+    {
+      "id": "com.knockbox.clipboard",
+      "name": "剪贴板",
+      "version": "1.0.0",
+      "description": "剪贴板历史：自动记录复制过的文本，搜索、钉住、一键重新复制",
+      "permissions": [
+        "clipboard:read",
+        "clipboard:write",
+        "storage:local",
+        "system:hotkey"
+      ],
+      "icon": "https://raw.githubusercontent.com/GunnmF/knockbox-apps/main/apps/com.knockbox.clipboard/icon.svg",
+      "download": "https://github.com/GunnmF/knockbox-apps/releases/download/store-v0.1.2/com.knockbox.clipboard-1.0.0.kbplugin",
+      "sha256": "a83a5db469311695f34f1e79629ba41ad1f5bd513d42602c612f55470ac78d12",
+      "bytes": 9002
+    },
     {
       "id": "com.knockbox.lock",
       "name": "锁屏",
@@ -12,8 +28,8 @@
         "system:hotkey"
       ],
       "icon": "https://raw.githubusercontent.com/GunnmF/knockbox-apps/main/apps/com.knockbox.lock/icon.svg",
-      "download": "https://github.com/GunnmF/knockbox-apps/releases/download/store-v0.1.1/com.knockbox.lock-1.2.0.kbplugin",
-      "sha256": "c864179ca89506d2089af13f6da25172ac9828f2d00626dcc7914fe9464799fb",
+      "download": "https://github.com/GunnmF/knockbox-apps/releases/download/store-v0.1.2/com.knockbox.lock-1.2.0.kbplugin",
+      "sha256": "222de70061784b89b10fa33cbb84ba4fda56c6e3fd7e4132dac1de42da647566",
       "bytes": 5514
     },
     {
@@ -27,8 +43,8 @@
         "system:hotkey"
       ],
       "icon": "https://raw.githubusercontent.com/GunnmF/knockbox-apps/main/apps/com.knockbox.screencap/icon.svg",
-      "download": "https://github.com/GunnmF/knockbox-apps/releases/download/store-v0.1.1/com.knockbox.screencap-3.2.0.kbplugin",
-      "sha256": "2378d93e4a269dfb316bdccc619ed18381822f67099c1661d63a363f8feb01dd",
+      "download": "https://github.com/GunnmF/knockbox-apps/releases/download/store-v0.1.2/com.knockbox.screencap-3.2.0.kbplugin",
+      "sha256": "67535ec58fd1e00e0b351d67cb4a1dfe7388f14a44da365f1f6db4f6d22bab34",
       "bytes": 6285
     }
   ]
